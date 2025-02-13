@@ -1,0 +1,24 @@
+name: JULIA-Test-2025-02-14-Calculate-Root_3-By-Monte-Carlo-method
+
+on:
+  workflow_dispatch:
+    inputs:
+      numofpoint:
+        description: '무작위 좌표 개수'
+        required: true
+        default: '1000'
+        type: string
+
+run-name: Test-2025-02-14-Calculate-Root_3-By-Monte-Carlo-method [ ${{ github.event.inputs.numofpoint }} ]
+
+jobs:
+  calculate:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Julia
+      uses: julia-actions/setup-julia@v1
+      with:
+        version: '1.6'
+    - name: Run calculate-Root_3-by-Monte-Carlo-method.jl
+      run: julia calculate-Root_3-by-Monte-Carlo-method.jl ${{ github.event.inputs.numofpoint }}
